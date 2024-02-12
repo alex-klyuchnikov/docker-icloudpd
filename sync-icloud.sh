@@ -276,15 +276,6 @@ Initialise(){
          exit 1
       fi
    done
-   LogDebug "IP address for ${icloud_domain}: ${icloud_dot_com}"
-   if [ "$(traceroute -q 1 -w 1 ${icloud_domain} >/dev/null 2>/tmp/icloudpd/icloudpd_tracert.err; echo $?)" = 1 ]; then
-      LogError "No route to ${icloud_domain} found. Please check your container's network settings - exiting"
-      LogError "Error debug - $(cat /tmp/icloudpd/icloudpd_tracert.err)"
-      sleep 120
-      exit 1
-   else
-      LogDebug "Route check to ${icloud_domain} successful"
-   fi
    if [ "${debug_logging:=false}" = true ]; then
       LogDebug "Apple ID: (hidden)"
    else
